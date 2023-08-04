@@ -80,12 +80,30 @@ class Graph(object):
 class Solution:
     
     def spath_algo(self, graph, start_node):
-            #type graph: String Dictionary
-            #type start_node: 
-            #return type: int
+        previous_nodes = {}
+   
+        for node in unvisited_nodes:
+            shortest_path[node] = sys.maxsize
+        shortest_path[start_node] = 0
+        
+        while len(unvisited_nodes) > 0:
+            current_min_node = None
+            for node in unvisited_nodes:
+                if current_min_node == None:
+                    current_min_node = node
+                elif shortest_path[node] < shortest_path[current_min_node]:
+                    current_min_node = node
             
-            #TODO: Write code below to return an int with the solution to the prompt.
-            pass
+            neighbors = graph.get_outgoing_edges(current_min_node)
+            for neighbor in neighbors:
+                temp = shortest_path[current_min_node] + graph.value(current_min_node, neighbor)
+                if temp < shortest_path[neighbor]:
+                    shortest_path[neighbor] = temp
+                    previous_nodes[neighbor] = current_min_node
+    
+            unvisited_nodes.remove(current_min_node)
+        
+        return previous_nodes, shortest_path
 
 def main():
     tc1 = Solution()
