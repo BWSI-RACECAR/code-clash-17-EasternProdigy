@@ -80,6 +80,14 @@ class Graph(object):
 class Solution:
     
     def spath_algo(self, graph, start_node):
+        #type graph: String Dictionary
+        #type start_node: 
+        #return type: int
+        
+        #TODO: Write code below to return an int with the solution to the prompt.
+        unvisited_nodes = list(graph.get_nodes())
+   
+        shortest_path = {}
         previous_nodes = {}
    
         for node in unvisited_nodes:
